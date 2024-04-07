@@ -23,7 +23,6 @@ export default function ActivePost({post, reverse}) {
                     <button className="btn btn-teal btn-view-post fw-bold">
                         Xem bài viết
                     </button>
-
                 </div>
             </div>
         </div>

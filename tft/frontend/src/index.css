@@ -191,3 +191,34 @@ footer a {
 .active-post .post-content .post-title:hover {
   border-bottom: 1px dashed teal;
 }
+
+.fade-post {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+
+.fade-post::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(to left , #000,  #000, transparent, transparent);
+}
+
+.fade-post .background-image {
+  width: 70%;
+}
+
+.fade-post .post-content {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  color: #FFF;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  overflow-y: scroll;
+}

@@ -2,6 +2,12 @@ import { useNavigate } from "react-router"
 import DefaultLayout from "../../layouts/DefaultLayout";
 import SmallPostCard from "../../components/SmallPostCard";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import AlternativePost from "../../components/AlternatePost";
+import FadePost from "../../components/FadePost";
+import ImageListPost from "../../components/ImageListPost";
+
 
 const initPost = {
     id: 0,
@@ -129,8 +135,28 @@ Thật đơn giản phải không nào? Chỉ cần mở Extensions tìm kiếm 
     return (
         <DefaultLayout
             slot={
-                <div className="post-content">
-                    <h1 className="post-title">{post.title}</h1>
+                <div className="post-content pt-3">
+                    <div className="post-title">
+                        <Link className="text-teal" to="/"><ArrowCircleLeftIcon /></Link>
+                        <h1>{post.title}</h1>
+                    </div>
+                    <div className="post-content">
+                        <div className="row">
+                            <div className="col-md-9">
+                                <div className="main-content">
+
+                                    {/* <AlternativePost /> */}
+                                    {/* <FadePost /> */}
+                                    <ImageListPost />
+
+                                </div>
+                            </div>
+
+                            <div className="col-md-3">
+                                <div className="reaction"></div>
+                            </div>
+                        </div>
+                    </div>
                     <hr />
                     <br />
 
@@ -139,7 +165,7 @@ Thật đơn giản phải không nào? Chỉ cần mở Extensions tìm kiếm 
                         <hr />
 
                         <div className="row mt-3">
-                            {recentPosts.slice(0,6).map((post, index) => (
+                            {recentPosts.slice(0, 6).map((post, index) => (
                                 <div key={post.id} className={"col-md-2 " + (index % 2 != 0 ? " mt-md-3 " : "")}>
                                     <SmallPostCard post={post} />
                                 </div>
