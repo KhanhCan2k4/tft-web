@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Drawer from "@mui/material/Drawer";
 import Header from './../../components/AdminHeader/index';
-import NavSide from '../../components/NavSide';
 import Footer from '../../components/Footer';
+import NavSide from './../../components/AdminNavSide/index';
 
 
 export default function AdminLayout({ slot }) {
@@ -22,7 +22,7 @@ export default function AdminLayout({ slot }) {
                         className='btn btn-teal mt-5 ms-2'
                         onClick={toggleDrawer(true)}
                     >
-                        Open Dashborad
+                        Mở Dashborad
                     </button>
 
                     <div className="container">
@@ -35,7 +35,6 @@ export default function AdminLayout({ slot }) {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }
