@@ -5,6 +5,7 @@ import AboutPage from "./pages/About";
 import EnrolmentPage from "./pages/Enrolment";
 import GraduationPage from "./pages/Graduation";
 import PostPage from "./pages/Post";
+import AdminHomePage from "./pages/AdminHome";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/tot-nghiep" element={<GraduationPage />} />
         <Route path="/bai-viet" element={<PostPage />} />
         <Route path="/danh-muc" element={<GraduationPage />} />
+
+        <Route path="/admin/" element={<AdminHomePage />} />
       </Routes>
     </BrowserRouter >
   );
