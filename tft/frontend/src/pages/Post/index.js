@@ -146,8 +146,8 @@ Thật đơn giản phải không nào? Chỉ cần mở Extensions tìm kiếm 
                                 <div className="main-content">
 
                                     {/* <AlternativePost /> */}
-                                    {/* <FadePost /> */}
-                                    <ImageListPost />
+                                    <FadePost />
+                                    {/* <ImageListPost /> */}
 
                                 </div>
                             </div>

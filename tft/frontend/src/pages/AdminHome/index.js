@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import CarouselBanner from "../../components/CarouselBanner";
-import PostCard from "../../components/PostCard";
-import TagGallery from "../../components/TagGallery";
-import { Link } from "react-router-dom";
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ActivePost from "../../components/ActivePost";
-import SmallPostCard from "../../components/SmallPostCard";
-import { Box } from '@mui/material';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import GroupIcon from '@mui/icons-material/Group';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import TagIcon from '@mui/icons-material/Tag';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 import AdminLayout from './../../layouts/AdminLayout/index';
+import DashBoardItem from "../../components/AdminDashboardItem";
+import { NavLink } from "react-router-dom";
 
 const initBanner = {
     img: "banner.jpg",
@@ -36,156 +39,89 @@ const initPost = {
 
 export default function AdminHomePage() {
 
-    const [tags, setTags] = useState([initTag]);
-    const [recentPosts, setPosts] = useState([initPost]);
+    const [items, setItems] = useState([]);
 
-    //fetch tags
     useEffect(() => {
-        const myTags = [
+        const myItems = [
             {
-                id: 1,
-                name: "Nghiên cứu khoa học",
-                imgs: [
-                    {
-                        title: 'San Francisco – Oakland Bay Bridge, United States',
-                        img: 'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-                    },
-                    {
-                        title: 'Bird',
-                        img: 'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-                    },
-                    {
-                        title: 'Bali, Indonesia',
-                        img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-                    },
-                    {
-                        title: 'Goč, Serbia',
-                        img: 'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-                    },
-                    {
-                        title: 'Bali, Indonesia',
-                        img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-                    },
-                    {
-                        title: 'Goč, Serbia',
-                        img: 'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-                    },
-                ]
+                link: "/quan-tri/gioi-thieu",
+                icon: <TagIcon />,
+                title: "Giới thiệu",
+                style: "brown",
             },
             {
-                id: 2,
-                name: "Sinh viên 5 tốt",
-                imgs: [
-                    {
-                        title: 'San Francisco – Oakland Bay Bridge, United States',
-                        img: 'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-                    },
-                    {
-                        title: 'Bird',
-                        img: 'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-                    },
-                    {
-                        title: 'Bali, Indonesia',
-                        img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-                    },
-                    {
-                        title: 'Goč, Serbia',
-                        img: 'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-                    },
-                ]
+                link: "/quan-tri/tuyen-sinh",
+                icon: <LoginIcon />,
+                title: "Thông tin tuyển sinh",
+                style: "teal",
+            },
+            {
+                link: "/quan-tri/tot-nghiep",
+                icon: <LogoutIcon />,
+                title: "Thông tin tốt nghiệp",
+                style: "rebeccapurple",
+            },
+            {
+                link: "/quan-tri/banner",
+                icon: <ViewCarouselIcon />,
+                title: "Banner",
+                style: "cadetblue",
+            },
+            {
+                link: "/quan-tri/danh-muc",
+                icon: <LocalOfferIcon />,
+                title: "Danh mục",
+                style: "chocolate",
+            },
+            {
+                link: "/quan-tri/bai-viet",
+                icon: <PostAddIcon />,
+                title: "Bài viết",
+                style: "darkblue",
+            },
+            {
+                link: "/quan-tri/lien-he",
+                icon: <ContactMailIcon />,
+                title: "Tiếp nhận liên hệ",
+                style: "darkgreen",
+            },
+            {
+                link: "/quan-tri/thanh-vien",
+                icon: <GroupIcon />,
+                title: "Thành viên",
+                style: "darkmagenta",
+            },
+            {
+                link: "/quan-tri/cai-dat",
+                icon: <SettingsApplicationsIcon />,
+                title: "Cài đặt",
+                style: "lightslategrey",
             }
         ];
-
-        setTags(myTags);
+        
+        setItems(myItems);
     }, []);
-
-    //fetch posts
-    useEffect(() => {
-        const myPosts = [
-            {
-                id: 1,
-                title: 'Hello World',
-                'content': `Help us keep running
-                If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist us in your blocker.
-                Thank you! ❤️`,
-                likes: 10,
-                views: 20,
-                isLike: true
-            },
-            {
-                id: 2,
-                title: "Sinh viên 5 tốt",
-                content: "Not quite sure what the error is. I have read multiple guides on how to use React routers and they haven't really helped. I am trying to set up these routers to work alongside express.js. I have tried commenting out different dependencies, but the main error seems to lie with just the BrowserRouter. I am a high school student and greatly appreciate any help!",
-                likes: 123,
-                views: 10,
-                isLike: false
-            },
-            {
-                id: 3,
-                title: "Post 1",
-                content: "Here is post 1's content",
-                likes: 123,
-                views: 10,
-                isLike: false
-            },
-            {
-                id: 4,
-                title: "Post 2",
-                content: "Here is post 2's content",
-                likes: 123,
-                views: 10,
-                isLike: false,
-                image: "banner-2.jpg"
-            },
-            {
-                id: 5,
-                title: "Post 3",
-                content: "Here is post 3's content",
-                likes: 123,
-                views: 10,
-                isLike: false,
-                image: "banner-3.jpg"
-
-            },
-            {
-                id: 6,
-                title: "Post 1",
-                content: "Here is post 1's content",
-                likes: 123,
-                views: 10,
-                isLike: false
-            },
-            {
-                id: 7,
-                title: "Post 2",
-                content: "Here is post 2's content",
-                likes: 123,
-                views: 10,
-                isLike: false,
-                image: "banner-2.jpg"
-            },
-            {
-                id: 8,
-                title: "Post 3",
-                content: "Here is post 3's content",
-                likes: 123,
-                views: 10,
-                isLike: false,
-                image: "banner-3.jpg"
-            },
-        ];
-
-        setPosts(myPosts);
-    }, []);
-
-    console.log(tags);
 
     return (
         <AdminLayout
             slot={
-                <div className="admin-content">
-                    
-                </div>
+                <>
+                    <h1 className="text-teal fw-bold">Quản trị</h1>
+                    <hr />
+                    <div className="admin-content">
+                        <div className="row">
+
+                            {items.map((item, index) => (
+                                <div key={index} className="col-md-4">
+                                    <NavLink to={item.link}>
+                                        <DashBoardItem icon={item.icon} title={item.title} style={item.style}/>
+                                    </NavLink>
+                                </div>
+                            ))}
+
+                        </div>
+                    </div>
+                </>
             }>
         </AdminLayout>
     );
