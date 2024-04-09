@@ -27,6 +27,11 @@ code {
   monospace;
 }
 
+.bg-teal{
+  background-color: teal;
+  color: #fff;
+}
+
 .content {
   min-height: 500px;
   background-image: url("../public/src/bg_pattern.png");

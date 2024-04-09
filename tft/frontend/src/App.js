@@ -7,6 +7,9 @@ import GraduationPage from "./pages/Graduation";
 import PostPage from "./pages/Post";
 import AdminHomePage from "./pages/AdminHome";
 import AdminPostPage from "./pages/AdminPost";
+import AdminPosts from "./pages/AdminPosts";
+import AdminCategories from "./pages/AdminCategories";
+import AdminMembers from "./pages/AdminMembers";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
 
         <Route path="/quan-tri" element={<AdminHomePage />} />
         <Route path="/quan-tri/gioi-thieu" element={<AdminPostPage />} />
+        <Route path="/quan-tri/bai-viet" element={<AdminPosts/>} />
+        <Route path="/quan-tri/danh-muc" element={<AdminCategories/>} />
+        <Route path="/quan-tri/thanh-vien" element={<AdminMembers/>} />
       </Routes>
     </BrowserRouter >
   );
