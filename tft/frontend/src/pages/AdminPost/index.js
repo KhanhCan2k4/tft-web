@@ -23,8 +23,8 @@ export default function AdminPostPage({ post }) {
     window.confirm("Lưu thay đổi?") && changeTab(reviewTab);
   }
 
-  const post1 = 
-  `
+  const post1 =
+    `
                         <?php
 namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
