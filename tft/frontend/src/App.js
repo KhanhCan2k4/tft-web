@@ -10,6 +10,8 @@ import AdminPostPage from "./pages/AdminPost";
 import AdminPosts from "./pages/AdminPosts";
 import AdminCategories from "./pages/AdminCategories";
 import AdminMembers from "./pages/AdminMembers";
+import ApploadPage from "./pages/Appload";
+import TagPage from "./pages/Tag";
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route path="/tot-nghiep" element={<GraduationPage />} />
         <Route path="/bai-viet" element={<PostPage />} />
         <Route path="/danh-muc" element={<GraduationPage />} />
+        <Route path="/vinh-danh" element={<ApploadPage />} />
 
         <Route path="/quan-tri" element={<AdminHomePage />} />
         <Route path="/quan-tri/gioi-thieu" element={<AdminPostPage />} />
@@ -33,3 +36,5 @@ function App() {
 }
 
 export default App;
+
+export const apiURL = 'http://localhost:8000/api/';
