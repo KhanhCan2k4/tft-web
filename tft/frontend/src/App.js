@@ -8,6 +8,7 @@ import PostPage from "./pages/Post";
 import AdminHomePage from "./pages/AdminHome";
 import AdminPostPage from "./pages/AdminPost";
 import ApploadPage from "./pages/Appload";
+import TagPage from "./pages/Tag";
 
 function App() {
   return (
@@ -23,9 +24,12 @@ function App() {
 
         <Route path="/quan-tri" element={<AdminHomePage />} />
         <Route path="/quan-tri/gioi-thieu" element={<AdminPostPage />} />
+        <Route path="/quan-tri/danh-muc" element={<TagPage />} />
       </Routes>
     </BrowserRouter >
   );
 }
 
 export default App;
+
+export const apiURL = 'http://localhost:8000/api/';
