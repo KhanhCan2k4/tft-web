@@ -19,7 +19,7 @@ export default function AdminLayout({ slot }) {
             <div className='content row'>
                 <div className='main-content'>
                     <button
-                        className='btn btn-teal mt-5 ms-2'
+                        className='btn btn-teal mt-2 ms-2'
                         onClick={toggleDrawer(true)}
                     >
                         Mở Dashborad
