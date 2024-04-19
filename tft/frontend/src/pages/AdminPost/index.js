@@ -1,11 +1,23 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 import AdminLayout from "../../layouts/AdminLayout";
 
-export default function AdminPostPage({ post }) {
+let post1 = `<h1>Hello world</h1>`;
+
+export default function AdminPostPage() {
   const reviewTab = useRef();
   const editTab = useRef();
+  const contentEditor = useRef();
+  const [cursorPosition, setCursorPosition] = useState(0);
 
+  const [post, setPost] = useState("");
   const [tab, setTab] = useState(reviewTab);
+
+  useEffect(() => {
+    if (tab === reviewTab) {
+      getPostFromDatabase();
+    }
+  }, [tab]);
 
   function changeTab(target) {
     reviewTab.current.className = "tab-teal";
@@ -16,122 +28,91 @@ export default function AdminPostPage({ post }) {
     setTab(target);
   }
 
-  function processingEditPost() {
-    //save edit
-
-    //change to review tab
-    window.confirm("Lưu thay đổi?") && changeTab(reviewTab);
+  function getPostFromDatabase() {
+    setPost(post1);
   }
 
-  const post1 =
-    `
-                        <?php
-namespace App\Models;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
-class User extends Authenticatable
-{
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'gauth_id',
-        'gauth_type'
-    ];
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-    ];
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-}
-                        `;
+  function processingEditPost() {
+    //save edit
+    post1 = post;
+    alert("Lưu thay đổi thành công");
+  }
+
+  function handleEditorChange(e) {
+    setPost(e.target.getContent());
+  
+    // Update cursor position
+    const editor = contentEditor.current.editor;
+    const selection = editor.selection.getRng();
+    setCursorPosition(selection.startOffset);
+  }
+  
+  // Function to restore cursor position
+  function restoreCursorPosition() {
+    const editor = contentEditor.current.editor;
+    editor.selection.select(editor.getBody(), true);
+    editor.selection.collapse(false);
+    editor.selection.setRng(cursorPosition, cursorPosition);
+  }
+
+  // Call restoreCursorPosition after re-render
+  useEffect(() => {
+    restoreCursorPosition();
+  });
 
   return (
     <>
       <AdminLayout
         slot={
           <div className="post-page">
-            <div className="row">
-              <h1>
-                <b>Bài viết giới thiệu</b>
-              </h1>
-              <hr />
-              <br />
-              <div className="col-md-3">
-                <button
-                  ref={reviewTab}
-                  onClick={() =>
-                    window.confirm("Bỏ thay đổi?") && changeTab(reviewTab)
-                  }
-                  className="tab-teal active"
-                >
-                  Xem
-                </button>
-                <br />
-                <br />
-                <button
-                  ref={editTab}
-                  onClick={() => changeTab(editTab)}
-                  className="tab-teal"
-                >
-                  Chỉnh sửa
-                </button>
-              </div>
+            <h1>
+              <b>Bài viết giới thiệu</b>
+            </h1>
 
-              <div className="col-md-9">
-                <div className="post">
-                  {post1}
-                  {post1}
-                  {post1}
-                  {post1}
-                </div>
-
-                {tab === editTab && (
+            <div className="offset-md-9 col-md-3 d-flex">
+              <button
+                ref={reviewTab}
+                onClick={() =>
+                  window.confirm("Bỏ thay đổi?")  && changeTab(reviewTab) && getPostFromDatabase()
+                }
+                className="tab-teal active"
+              >
+                Xem
+              </button> 
+              &ensp;
+              <button
+                ref={editTab}
+                onClick={() => changeTab(editTab)}
+                className="tab-teal"
+              >
+                Chỉnh sửa
+              </button>
+            </div>
+            <hr />
+            <div className="post">
+            <Editor
+                ref={contentEditor}
+                disabled={tab !== editTab}
+                apiKey='8gjew3xfjqt5cu2flsa3nz2oqr4z5bru9hr3phl05rsfyss3'
+                init={{
+                  plugins:
+                    "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker",
+                  toolbar:
+                    "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+                }}
+                initialValue={post}
+                onChange={handleEditorChange}
+              />
+              {tab === editTab && (
+                <div className="offset-md-10 col-md-2">
                   <button
                     onClick={() => processingEditPost()}
-                    className="btn btn-teal mt-4"
+                    className="tab-teal active mt-2"
                   >
-                    <b>Lưu</b>
+                    Lưu thay đổi
                   </button>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         }
