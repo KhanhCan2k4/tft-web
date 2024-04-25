@@ -10,10 +10,4 @@ Route::get('/', function () {
     return "hello";
 });
 
-Route::prefix("api")->group(function () {
-    Route::resource("posts", PostController::class);
-    Route::resource("tags", TagController::class);
-    Route::resource("users", UserController::class);
-    Route::resource("comments", CommentController::class);
-});
 
