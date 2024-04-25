@@ -1,12 +1,65 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-function AdminMemberIndex({ members }) {
+  
+const initUser = {
+    id: 0,
+    name: "Unknown User",
+  }
+
+function AdminMemberIndex() {
+
+    const [users, setUsers] = useState([initUser]);
+
+    useEffect(() => {
+        getFromDatabase();
+    },[])
+
+    function getFromDatabase() {
+        fetch("http://localhost:8000/api/users")
+            .then(res => res.json())
+            .then(users => {
+                setUsers(users);
+            })
+            .catch((err) => {
+                console.log(err);
+                setUsers([initUser]);
+            })
+    }
+
+    function deleteUser(id) {
+
+        if (!window.confirm("Banj cos muoons xoas thanhf vieen nayf khoong?")) {
+            return;
+        }
+    
+        const url =`http://localhost:8000/api/users/${id}`;
+        fetch(url, {
+          method: "DELETE",
+          headers: {"Content-Type": "application/json"},
+        })
+        .then(res=> res.json())
+          .then(data => {
+            console.log(data);
+            console.log("Delete successfully");
+            getFromDatabase();
+
+          })
+          .catch((err) => {
+            console.log(err);
+            console.log("Delete Unsuccessfully");
+          })
+      }
+
     return (
         <>
             <h1>Quản lý thành viên</h1>
 
             <div className="row">
                 <div className="col">
-                    <a className="btn btn-outline-success my-3" href="http://127.0.0.1:8000/admin/products/create">Thêm thành viên mới</a>
+                    <Link className="btn btn-outline-teal" to={"/quan-tri/thanh-vien/them-thong-tin-thanh-vien"}>
+                        Thêm thành viên
+                    </Link>
                 </div>
                 <div className="col text-end">
                     <a className="btn btn-outline-teal my-3 mx-2" href="http://127.0.0.1:8000/admin/products/create">Xem danh sách</a>
@@ -34,21 +87,24 @@ function AdminMemberIndex({ members }) {
                         </tr>
                     </thead>
                     <tbody className="table-group-divider">
-                        {members.map(
-                            (member, index) => (
+                        {users.map(
+                            (user, index) => (
                                 <tr key={index}>
-                                    <td>{member['id']}</td>
-                                    <td>{member['full_name']}</td>
-                                    <td>{member['avatar']}</td>
-                                    <td>{member['chuc_vu']}</td>
-                                    <td>{member['khoa']}</td>
-                                    <td>{member['created_at']}</td>
-                                    <td>{member['updated_at']}</td>
+                                    <td>{user['id']}</td>
+                                    <td>{user['name']}</td>
+                                    <td>{user['avatar']}</td>
+                                    <td>{user['chuc_vu']}</td>
+                                    <td>{user['khoa']}</td>
+                                    <td>{user['created_at']}</td>
+                                    <td>{user['updated_at']}</td>
                                     <td>
-                                        <a className="btn btn-outline-warning" href="http://127.0.0.1:8000/admin/products/1/edit"><i className="bi bi-pencil-square"></i></a>
+                                        <Link className="btn btn-outline-warning" to={"/quan-tri/thanh-vien/sua-thong-tin-thanh-vien"} state={user }>
+                                            
+                                            <i className="bi bi-pencil-square"></i>
+                                        </Link>
                                     </td>
                                     <td>
-                                        <a href="#" className="btn btn-outline-danger"><i className="bi bi-x-circle"></i></a>
+                                        <span onClick={()=> deleteUser(user['id'])} className="btn btn-outline-danger"><i className="bi bi-x-circle"></i></span>
                                     </td>
                                 </tr>
                             ))}
