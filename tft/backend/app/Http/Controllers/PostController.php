@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $post;
     }
 
     /**
@@ -45,7 +45,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+
     }
 
     /**
@@ -53,7 +53,22 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        // $validated = $request->validate(
+        //     [
+        //         'content' => 'required|max:50',
+        //     ],
+        //     [
+        //         'content.required' => 'Title is required',
+        //     ]
+        // );
+
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+
+        $post->save();
+
+        return 204;
     }
 
     /**

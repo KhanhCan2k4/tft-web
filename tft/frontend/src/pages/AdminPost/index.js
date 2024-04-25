@@ -1,23 +1,33 @@
 import { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import AdminLayout from "../../layouts/AdminLayout";
+import { useNavigate } from "react-router";
 
-let post1 = `<h1>Hello world</h1>`;
+const initPost = {
+  id: 0,
+  title: "Tiêu đề bài viết",
+  content: "Đây là nội dung bài viết",
+  likes: 0,
+  views: 0,
+}
+
+const id = 1;
 
 export default function AdminPostPage() {
   const reviewTab = useRef();
   const editTab = useRef();
   const contentEditor = useRef();
+
+  const nagivate = useNavigate();
+
   const [cursorPosition, setCursorPosition] = useState(0);
 
-  const [post, setPost] = useState("");
+  const [post, setPost] = useState(initPost);
   const [tab, setTab] = useState(reviewTab);
 
-  useEffect(() => {
-    if (tab === reviewTab) {
-      getPostFromDatabase();
-    }
-  }, [tab]);
+  if (tab === reviewTab) {
+    getPostFromDatabase();
+  }
 
   function changeTab(target) {
     reviewTab.current.className = "tab-teal";
@@ -29,17 +39,43 @@ export default function AdminPostPage() {
   }
 
   function getPostFromDatabase() {
-    setPost(post1);
+    fetch(`http://localhost:8000/api/posts/${id}`)
+      .then(res => res.json())
+      .then(post => {
+        setPost(post);
+      })
+      .catch(err => {
+        nagivate("/quan-tri");
+      });
   }
 
   function processingEditPost() {
+    console.log(JSON.stringify(post));
     //save edit
-    post1 = post;
+    // post1 = post; 
+    fetch(`http://localhost:8000/api/posts/${id}`, {
+      method: "PATCH", //PATCH
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post)
+    }) 
+    .then(res => {
+      console.log(res);
+      console.log("Update successfully")
+    }
+    )
+    .catch (err => {
+      console.log(err);
+      console.log("Update unsuccessfully")
+    }
+    )
+
     alert("Lưu thay đổi thành công");
   }
 
   function handleEditorChange(e) {
-    setPost(e.target.getContent());
+    // setPost(e.target.getContent());
+    post.content = e.target.getContent();
+    setPost(post);
   
     // Update cursor position
     const editor = contentEditor.current.editor;
@@ -50,9 +86,9 @@ export default function AdminPostPage() {
   // Function to restore cursor position
   function restoreCursorPosition() {
     const editor = contentEditor.current.editor;
-    editor.selection.select(editor.getBody(), true);
-    editor.selection.collapse(false);
-    editor.selection.setRng(cursorPosition, cursorPosition);
+    editor?.selection?.select(editor.getBody(), true);
+    editor?.selection?.collapse(false);
+    editor?.selection?.setRng(cursorPosition, cursorPosition);
   }
 
   // Call restoreCursorPosition after re-render
@@ -71,7 +107,7 @@ export default function AdminPostPage() {
 
             <div className="offset-md-9 col-md-3 d-flex">
               <button
-                ref={reviewTab}
+                ref={reviewTab} 
                 onClick={() =>
                   window.confirm("Bỏ thay đổi?")  && changeTab(reviewTab) && getPostFromDatabase()
                 }
@@ -100,7 +136,7 @@ export default function AdminPostPage() {
                   toolbar:
                     "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
                 }}
-                initialValue={post}
+                initialValue={post?.content || "Đây là nội dung bài viết ..."}
                 onChange={handleEditorChange}
               /> */}
               {tab === editTab && (
