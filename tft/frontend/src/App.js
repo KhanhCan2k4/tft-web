@@ -14,6 +14,7 @@ import ApploadPage from "./pages/Appload";
 import TagPage from "./pages/Tag";
 import UserUpdate from "./pages/UserUpdate";
 import UserCreate from "./pages/UserCreate";
+import CreatePost from "./pages/AdminCreatePost";
 
 function App() {
   return (
@@ -29,7 +30,10 @@ function App() {
 
         <Route path="/quan-tri" element={<AdminHomePage />} />
         <Route path="/quan-tri/gioi-thieu" element={<AdminPostPage />} />
+
         <Route path="/quan-tri/bai-viet" element={<AdminPosts/>} />
+        <Route path="/quan-tri/bai-viet/them-bai-viet" element={<CreatePost/>} />
+
         <Route path="/quan-tri/danh-muc" element={<AdminCategories/>} />
         <Route path="/quan-tri/thanh-vien" element={<AdminMembers/>} />
 
