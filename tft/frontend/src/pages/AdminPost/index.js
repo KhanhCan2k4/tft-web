@@ -90,7 +90,7 @@ export default function AdminPostPage() {
             </div>
             <hr />
             <div className="post">
-            <Editor
+            {/* <Editor
                 ref={contentEditor}
                 disabled={tab !== editTab}
                 apiKey='8gjew3xfjqt5cu2flsa3nz2oqr4z5bru9hr3phl05rsfyss3'
@@ -102,7 +102,7 @@ export default function AdminPostPage() {
                 }}
                 initialValue={post}
                 onChange={handleEditorChange}
-              />
+              /> */}
               {tab === editTab && (
                 <div className="offset-md-10 col-md-2">
                   <button
