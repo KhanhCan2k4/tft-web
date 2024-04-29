@@ -4,17 +4,15 @@ import AdminLayout from "../../layouts/AdminLayout";
 import { useNavigate } from "react-router";
 import Modal from "react-bootstrap/Modal";
 import { Parser } from "html-to-react";
-import LocalOfferIcon from "@mui/icons-material/LocalOffer";
-import "./styles.css";
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 const initPost = {
   id: 0,
   title: "Tiêu đề bài viết",
-  content: "",
+  content: "Đây là nội dung bài viết",
   likes: 0,
   views: 0,
   author: 1,
-  tags: [],
 };
 
 const initTag = {
@@ -31,7 +29,7 @@ const colors = [
   "outline-primary",
 ];
 
-export default function CreatePost() {
+export default function EditPost() {
   const contentEditor = useRef();
   const title = useRef();
   const alertSuccess = useRef();
@@ -43,13 +41,22 @@ export default function CreatePost() {
   const [cursorPosition, setCursorPosition] = useState(0);
   const [show, setShow] = useState(false);
 
-  const [post, setPost] = useState(initPost);
+  const [post, setPost] = useState(() => {
+    const post = window.history.state.usr ?? initPost();
+    return post;
+  });
   const [tags, setTags] = useState([initTag]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
     return setShow(true);
   };
+
+  useEffect(() => {
+    post.tags = post.tags.map(tag => {
+      return tag.id ?? tag;
+    })
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/tags")
@@ -67,10 +74,9 @@ export default function CreatePost() {
     if (target.className.includes("active")) {
       target.classList.remove("active");
 
-      post.tags = post.tags.filter(tag => {
+      post.tags = post.tags.filter((tag) => {
         return tag !== id;
       });
-
     } else {
       target.classList.add("active");
 
@@ -82,15 +88,15 @@ export default function CreatePost() {
     submitButton.current.textContent = "Đang tải...";
     alertSuccess.current.textContent = "";
     alertError.current.innerHTML = "";
-    //
+
     const data = {
       ...post,
       title: title.current.value,
       author: 1,
     };
 
-    fetch(`http://localhost:8000/api/posts`, {
-      method: "POST", //PATCH
+    fetch(`http://localhost:8000/api/posts/${post.id}`, {
+      method: "PATCH", //PATCH
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
@@ -99,7 +105,6 @@ export default function CreatePost() {
         switch (data.status) {
           case 200:
             alertSuccess.current.textContent = data.message;
-            submitButton.current.style.display = "none";
             break;
           case 422:
             const messages = data.message;
@@ -119,17 +124,17 @@ export default function CreatePost() {
             break;
           default:
             alertError.current.innerHTML =
-              "Đã có lỗi xảy ra. Thêm bài viết không thành công";
+              "Đã có lỗi xảy ra. Cập nhật không thành công";
             break;
         }
       })
       .catch((err) => {
         console.log(err);
         alertError.current.innerHTML =
-          "Đã có lỗi xảy ra. Thêm bài viết không thành công";
+          "Đã có lỗi xảy ra. Cập nhật không thành công";
       })
       .finally(() => {
-        submitButton.current.textContent = "Lưu bài viết";
+        submitButton.current.textContent = "Lưu thay đổi";
       });
   }
 
@@ -156,6 +161,8 @@ export default function CreatePost() {
   useEffect(() => {
     restoreCursorPosition();
   });
+
+  console.log(post);
 
   return (
     <>
@@ -189,13 +196,14 @@ export default function CreatePost() {
             {tags.map((tag) => (
               <button
                 onClick={(e) => handleChoosingTag(tag.id, e.target)}
-                className={`btn btn-${
-                  colors[(tag.id - 1) % colors.length]
-                } m-1`}
+                className={
+                  `btn btn-${colors[(tag.id - 1) % colors.length]}
+                   m-1 
+                   ${post.tags?.includes(tag.id) ? " active ": ""}`}
                 key={tag.id}
               >
-                  <LocalOfferIcon />
-                  {tag.name}
+                <LocalOfferIcon />
+                {tag.name}
               </button>
             ))}
 
@@ -205,11 +213,13 @@ export default function CreatePost() {
               </label>
               <h1>
                 <input
+                  required
                   ref={title}
                   placeholder="Tiêu đề bài viết"
                   type="text"
                   id="post-title"
                   className="form-control py-3"
+                  defaultValue={post?.title}
                 />
               </h1>
             </div>
@@ -223,7 +233,7 @@ export default function CreatePost() {
                   toolbar:
                     "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
                 }}
-                initialValue={""}
+                initialValue={post?.content}
                 onChange={handleEditorChange}
               />
               <div className="offset-md-10 col-md-2">
@@ -232,7 +242,7 @@ export default function CreatePost() {
                   onClick={processingSavePost}
                   className="tab-teal active mt-2"
                 >
-                  Lưu bài viết
+                  Lưu chỉnh sửa
                 </button>
               </div>
             </div>

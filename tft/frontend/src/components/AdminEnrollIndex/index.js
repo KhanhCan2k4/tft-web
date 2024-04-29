@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Parser } from "html-to-react";
 import { Link } from "react-router-dom";
-import Pagination from "../Pagination";
-import "./styles.css";
 
 const intiPost = {
   id: 0,
@@ -12,25 +10,22 @@ const intiPost = {
   author: 1,
 };
 
-function AdminPostIndex() {
+export default function AdminEnrollIndex() {
   const modal = useRef();
 
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
   const [posts, setPosts] = useState([intiPost]);
   const [show, setShow] = useState(false);
   const [reviewedPost, setReviewedPost] = useState(intiPost);
 
   useEffect(() => {
     getDataFromDatabase();
-  }, [page]);
+  }, []);
 
   function getDataFromDatabase() {
-    fetch(`http://localhost:8000/api/posts/pagination/${page}`)
+    fetch("http://localhost:8000/api/posts/enroll")
       .then((res) => res.json())
-      .then((data) => {
-        setTotal(data.total);
-        setPosts(Object.values(data.posts));
+      .then((posts) => {
+        setPosts(posts);
       })
       .catch((err) => {
         console.log(err);
@@ -56,13 +51,9 @@ function AdminPostIndex() {
       .catch((err) => {});
   }
 
-  function handleLink(currentPage) {
-    setPage(currentPage);
-  }
-
   return (
-    <div className="admin-posts">
-      <h1>Quản lý bài viết</h1>
+    <>
+      <h1>Quản lý các bài viết tuyển sinh</h1>
 
       <div className="row">
         <div className="col">
@@ -90,8 +81,6 @@ function AdminPostIndex() {
         </div>
         <div className="alert alert-success"></div>
         <div className="alert alert-danger"></div>
-
-        <Pagination page={page} total={Math.ceil(total *1.0 /5)} handleLink={handleLink} />
 
         <table className="table table-striped">
           <thead>
@@ -171,8 +160,6 @@ function AdminPostIndex() {
           </Modal.Footer>
         </Modal>
       </div>
-    </div>
+    </>
   );
 }
-
-export default AdminPostIndex;

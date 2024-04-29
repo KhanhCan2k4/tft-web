@@ -16,11 +16,14 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    protected function tags() : BelongsToMany {
+    public function tags() : BelongsToMany {
         return $this->belongsToMany(Tag::class);
     }
 
     protected function comments() : HasMany {
         return $this->hasMany(Comment::class);
     }
+
+    protected $fillable = ['title', 'content', 'author', 'tags'];
+
 }

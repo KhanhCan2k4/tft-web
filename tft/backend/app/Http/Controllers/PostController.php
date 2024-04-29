@@ -16,7 +16,43 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        return Post::all()->load("tags");
+    }
+
+    public function total()
+    {
+        return Post::all()->count();
+    }
+
+    public function indexWithPaginate($page = 1)
+    {
+        $post = Post::all()->reverse()->load("tags")->forPage($page, 5);
+
+        return ["posts" => $post, "total" => Post::all()->count()];
+    }
+
+    public function getEnrollPosts()
+    {
+        $posts = Post::all();
+
+        $posts = $posts->filter(function(Post $post) {
+            $tags =  $post->tags;
+            return $tags->contains(1);
+        });
+
+        return $posts;
+    }
+
+    public function getStudentPosts()
+    {
+        $posts = Post::all();
+
+        $posts = $posts->filter(function(Post $post) {
+            $tags =  $post->tags;
+            return $tags->contains(2);
+        });
+
+        return $posts;
     }
 
     /**
@@ -29,22 +65,18 @@ class PostController extends Controller
             [
                 'title' => 'required|max:255',
                 'content' => 'required',
-                'views' => 'integer|min:0',
-                'likes' => 'integer|min:0',
-                'author' => 'required|integer|min:1',
             ],
             [
-                'title.required' => 'Title is required',
-                'title.max' => 'The title is too long',
-                'content.required' => 'The content is required',
-                'author.integer' => 'The author is not is valid user id',
+                'title.required' => 'Chưa nhập tiêu đề bài viết',
+                'title.max' => 'Tiêu đề bài viết quá dài',
+                'content.required' => 'Chưa nhập nội dung bài viết',
             ]
         );
 
         if ($validator->fails()) {
             return json_encode([
                 'status' => 422,
-                'message' => $validator->errors()->toJson(),
+                'message' => $validator->errors()->getMessages(),
             ]);
         }
 
@@ -54,10 +86,11 @@ class PostController extends Controller
         $post->author = $request->author;
 
         $post->save();
+        $post->tags()->attach($request->tags);
 
         return json_encode([
             'status' => 200,
-            'message' => "Update successfully",
+            'message' => "Thêm bài viết thành công",
         ]);
     }
 
@@ -66,7 +99,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        return $post->load("tags");
     }
 
     /**
@@ -81,16 +114,16 @@ class PostController extends Controller
                 'content' => 'required',
             ],
             [
-                'title.required' => 'Title is required',
-                'title.max' => 'The title is too long',
-                'content.required' => 'The content is required',
+                'title.required' => 'Chưa nhập tiêu đề bài viết',
+                'title.max' => 'Tiêu đề bài viết quá dài',
+                'content.required' => 'Chưa nhập nội dung bài viết',
             ]
         );
 
         if ($validator->fails()) {
             return json_encode([
                 'status' => 422,
-                'message' => $validator->errors()->toJson(),
+                'message' => $validator->errors()->getMessages(),
             ]);
         }
 
@@ -98,10 +131,11 @@ class PostController extends Controller
         $post->content = $request->content;
 
         $post->save();
+        $post->tags()->sync($request->tags);
 
         return json_encode([
             'status' => 200,
-            'message' => "Update successfully",
+            'message' => "Cập nhật thành công",
         ]);
     }
 
