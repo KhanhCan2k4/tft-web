@@ -57,7 +57,7 @@ export default function NavSide() {
         </ListItem>
 
         <ListItem disablePadding className="list-item">
-          <NavLink to={"/quan-tri/tot-nghiep"}>
+          <NavLink to={"/quan-tri/sinh-vien"}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon />

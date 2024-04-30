@@ -20,6 +20,7 @@ import Intro from "./pages/Intro";
 import FadeTransition from "./components/FadeTransition";
 import EditPost from "./pages/AdminEditPost";
 import AdminEnroll from "./pages/AdminEnroll";
+import AdminStudentPost from './pages/AdminStudentPosts/index';
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
         <Route path="/quan-tri/tuyen-sinh/them-bai-viet" element={<CreatePost/>} />
         <Route path="/quan-tri/tuyen-sinh/chinh-sua-bai-viet" element={<EditPost/>} />
 
-        <Route path="/quan-tri/sinh-vien" element={<AdminPosts/>} />
+        <Route path="/quan-tri/sinh-vien" element={<AdminStudentPost/>} />
         <Route path="/quan-tri/sinh-vien/them-bai-viet" element={<CreatePost/>} />
         <Route path="/quan-tri/sinh-vien/chinh-sua-bai-viet" element={<EditPost/>} />
 

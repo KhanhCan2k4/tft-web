@@ -12,7 +12,7 @@ const intiPost = {
   author: 1,
 };
 
-export default function AdminEnrollIndex() {
+export default function AdminStudentPostsIndex() {
   const modal = useRef();
 
   const [page, setPage] = useState(1);
@@ -27,7 +27,7 @@ export default function AdminEnrollIndex() {
   }, [page]);
 
   function getDataFromDatabase() {
-    fetch(`http://localhost:8000/api/posts/enroll/pagination/${page}`)
+    fetch(`http://localhost:8000/api/posts/student/pagination/${page}`)
       .then((res) => res.json())
       .then(data => {
         setTotal(data.total);
@@ -63,7 +63,7 @@ export default function AdminEnrollIndex() {
 
   return (
     <div className="admin-enroll-posts">
-      <h1>Quản lý các bài viết tuyển sinh</h1>
+      <h1>Quản lý các bài viết dành cho sinh viên</h1>
 
       <div className="row">
         <div className="col">

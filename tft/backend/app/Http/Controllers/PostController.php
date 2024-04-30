@@ -19,16 +19,11 @@ class PostController extends Controller
         return Post::all()->load("tags");
     }
 
-    public function total()
-    {
-        return Post::all()->count();
-    }
-
     public function indexWithPaginate($page = 1)
     {
-        $post = Post::all()->reverse()->load("tags")->forPage($page, 5);
+        $posts = Post::all()->reverse()->load("tags")->forPage($page, 5);
 
-        return ["posts" => $post, "total" => Post::all()->count()];
+        return ["posts" => $posts, "total" => Post::all()->count()];
     }
 
     public function getEnrollPosts()
@@ -38,9 +33,25 @@ class PostController extends Controller
         $posts = $posts->filter(function(Post $post) {
             $tags =  $post->tags;
             return $tags->contains(1);
-        });
+        })->reverse()->load("tags");
 
         return $posts;
+    }
+
+    public function getEnrollPostsWithPaginate($page = 1)
+    {
+        $posts = Post::all();
+
+        $posts = $posts->filter(function(Post $post) {
+            $tags =  $post->tags;
+            return $tags->contains(1);
+        });
+
+        $count = $posts->count();
+
+        $posts = $posts->reverse()->load("tags")->forPage($page, 5);
+
+        return ["posts" => $posts, "total" => $count];
     }
 
     public function getStudentPosts()
@@ -50,10 +61,27 @@ class PostController extends Controller
         $posts = $posts->filter(function(Post $post) {
             $tags =  $post->tags;
             return $tags->contains(2);
-        });
+        })->reverse()->load("tags");
 
         return $posts;
     }
+
+    public function getStudentPostsWithPaginate($page = 1)
+    {
+        $posts = Post::all();
+
+        $posts = $posts->filter(function(Post $post) {
+            $tags =  $post->tags;
+            return $tags->contains(2);
+        });
+
+        $count = $posts->count();
+
+        $posts = $posts->reverse()->load("tags")->forPage($page, 5);
+
+        return ["posts" => $posts, "total" => $count];
+    }
+
 
     /**
      * Store a newly created resource in storage.

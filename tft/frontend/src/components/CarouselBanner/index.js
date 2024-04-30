@@ -28,7 +28,7 @@ export default function CarouselBanner({ banners }) {
                         <div key={index} 
                             onClick={goIntro}
                             className={"carousel-item " + (index == 0 ? "active" : "")}>
-                            <img src={banner.img && "./src/banners/" + banner.img || "./src/banners/banner.jpg"} className="d-block w-100" alt={banner.title} />
+                            <img src={"http://localhost:8000/" + banner.img || "./src/banners/banner.jpg"} className="d-block w-100" alt={banner.title} />
                         </div>
                     ))}
 
