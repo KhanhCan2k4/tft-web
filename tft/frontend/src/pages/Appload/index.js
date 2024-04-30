@@ -117,7 +117,7 @@ export default function ApploadPage({}) {
 
           <div className="appload-class">
             <h2>Sinh viên khoá 5</h2>
-            <ApploadList users={students5} />
+            <ApploadList users={students5} notLast={false} />
           </div>
         </div>
       }

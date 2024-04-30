@@ -12,7 +12,9 @@
     "@tinymce/tinymce-react": "^5.0.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "html-to-react": "^1.7.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
     "react-router": "^6.22.3",
@@ -20,6 +22,7 @@
     "react-scripts": "5.0.1",
     "react-swipeable-views-react-18-fix": "^0.14.1",
     "react-swipeable-views-utils": "^0.14.0",
+    "react-transition-group": "^4.4.5",
     "tinymce": "^7.0.1",
     "web-vitals": "^2.1.4"
   },

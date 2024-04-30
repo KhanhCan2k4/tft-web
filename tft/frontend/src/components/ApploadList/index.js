@@ -1,6 +1,6 @@
 import ApploadUser from "../AploadUser";
 
-export default function ApploadList({ users }) {
+export default function ApploadList({ users, notLast }) {
   return (
     <div className="appload-list-container">
       <div className="row">

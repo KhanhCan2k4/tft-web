@@ -22,7 +22,7 @@ export default function ApploadUser({ user, rank }) {
   );
 }
 
-function Modal({ open, handleClose }) {
+function Modal() {
   return (
     <div className="appload-user-modal">
       <h5 className="modal-title" id="exampleModalLabel">

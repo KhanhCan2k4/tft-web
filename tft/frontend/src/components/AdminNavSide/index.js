@@ -13,6 +13,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { NavLink } from "react-router-dom";
 
 export default function NavSide() {
@@ -56,12 +57,12 @@ export default function NavSide() {
         </ListItem>
 
         <ListItem disablePadding className="list-item">
-          <NavLink to={"/quan-tri/tot-nghiep"}>
+          <NavLink to={"/quan-tri/sinh-vien"}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText primary="Thông tin tốt nghiệp" />
+              <ListItemText primary="Thông tin dành cho sinh viên" />
             </ListItemButton>
           </NavLink>
         </ListItem>
@@ -128,6 +129,18 @@ export default function NavSide() {
                 <SettingsApplicationsIcon />
               </ListItemIcon>
               <ListItemText primary="Cài đặt" />
+            </ListItemButton>
+          </NavLink>
+        </ListItem>
+
+        <hr />
+        <ListItem disablePadding className="list-item">
+          <NavLink to={"/quan-tri/dang-xuat"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="Đăng xuất" />
             </ListItemButton>
           </NavLink>
         </ListItem>

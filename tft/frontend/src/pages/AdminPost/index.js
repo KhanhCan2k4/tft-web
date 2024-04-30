@@ -9,7 +9,7 @@ const initPost = {
   content: "Đây là nội dung bài viết",
   likes: 0,
   views: 0,
-}
+};
 
 const id = 1;
 
@@ -40,11 +40,11 @@ export default function AdminPostPage() {
 
   function getPostFromDatabase() {
     fetch(`http://localhost:8000/api/posts/${id}`)
-      .then(res => res.json())
-      .then(post => {
+      .then((res) => res.json())
+      .then((post) => {
         setPost(post);
       })
-      .catch(err => {
+      .catch((err) => {
         nagivate("/quan-tri");
       });
   }
@@ -52,22 +52,20 @@ export default function AdminPostPage() {
   function processingEditPost() {
     console.log(JSON.stringify(post));
     //save edit
-    // post1 = post; 
+    // post1 = post;
     fetch(`http://localhost:8000/api/posts/${id}`, {
       method: "PATCH", //PATCH
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(post)
-    }) 
-    .then(res => {
-      console.log(res);
-      console.log("Update successfully")
-    }
-    )
-    .catch (err => {
-      console.log(err);
-      console.log("Update unsuccessfully")
-    }
-    )
+      body: JSON.stringify(post),
+    })
+      .then((res) => {
+        console.log(res);
+        console.log("Update successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("Update unsuccessfully");
+      });
 
     alert("Lưu thay đổi thành công");
   }
@@ -76,13 +74,13 @@ export default function AdminPostPage() {
     // setPost(e.target.getContent());
     post.content = e.target.getContent();
     setPost(post);
-  
+
     // Update cursor position
     const editor = contentEditor.current.editor;
     const selection = editor.selection.getRng();
     setCursorPosition(selection.startOffset);
   }
-  
+
   // Function to restore cursor position
   function restoreCursorPosition() {
     const editor = contentEditor.current.editor;
@@ -107,14 +105,16 @@ export default function AdminPostPage() {
 
             <div className="offset-md-9 col-md-3 d-flex">
               <button
-                ref={reviewTab} 
+                ref={reviewTab}
                 onClick={() =>
-                  window.confirm("Bỏ thay đổi?")  && changeTab(reviewTab) && getPostFromDatabase()
+                  window.confirm("Bỏ thay đổi?") &&
+                  changeTab(reviewTab) &&
+                  getPostFromDatabase()
                 }
                 className="tab-teal active"
               >
                 Xem
-              </button> 
+              </button>
               &ensp;
               <button
                 ref={editTab}
@@ -126,10 +126,10 @@ export default function AdminPostPage() {
             </div>
             <hr />
             <div className="post">
-            {/* <Editor
+              <Editor
                 ref={contentEditor}
                 disabled={tab !== editTab}
-                apiKey='8gjew3xfjqt5cu2flsa3nz2oqr4z5bru9hr3phl05rsfyss3'
+                apiKey="8gjew3xfjqt5cu2flsa3nz2oqr4z5bru9hr3phl05rsfyss3"
                 init={{
                   plugins:
                     "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker",
@@ -138,7 +138,7 @@ export default function AdminPostPage() {
                 }}
                 initialValue={post?.content || "Đây là nội dung bài viết ..."}
                 onChange={handleEditorChange}
-              /> */}
+              />
               {tab === editTab && (
                 <div className="offset-md-10 col-md-2">
                   <button

@@ -1,14 +1,14 @@
-import AdminPostIndex from "../../components/AdminPostIndex";
+import AdminEnrollIndex from "../../components/AdminEnrollIndex";
 import AdminLayout from "../../layouts/AdminLayout";
 
-function AdminPosts() {
+function AdminEnroll() {
 
     return (
         <AdminLayout slot={
             (
                 <>
                     <div className="container">
-                        <AdminPostIndex />
+                        <AdminEnrollIndex />
                     </div>
                 </>
             )
@@ -17,4 +17,4 @@ function AdminPosts() {
     )
 }
 
-export default AdminPosts;
+export default AdminEnroll;

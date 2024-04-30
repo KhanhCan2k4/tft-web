@@ -1,12 +1,19 @@
+import { useNavigate } from "react-router";
 
 export default function CarouselBanner({ banners }) {
     const total = banners.length;
 
+    const navigate = useNavigate();
+
     const btnLinks = [];
     for (let i = 0; i < total; i++) {
         btnLinks.push((
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={i} className="active" aria-current="true" aria-label="Slide 1"></button>
         ));
+    }
+
+    function goIntro() {
+        navigate("/intro");
     }
 
     return (
@@ -18,8 +25,10 @@ export default function CarouselBanner({ banners }) {
 
                 <div className="carousel-inner">
                     {banners.map((banner, index) => (
-                        <div key={index} className={"carousel-item " + (index == 0 ? "active" : "")}>
-                            <img src={banner.img && "./src/banners/" + banner.img || "./src/banners/banner.jpg"} className="d-block w-100" alt={banner.title} />
+                        <div key={index} 
+                            onClick={goIntro}
+                            className={"carousel-item " + (index == 0 ? "active" : "")}>
+                            <img src={"http://localhost:8000/" + banner.img || "./src/banners/banner.jpg"} className="d-block w-100" alt={banner.title} />
                         </div>
                     ))}
 

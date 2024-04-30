@@ -42,6 +42,10 @@ export default function Header() {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/tot-nghiep"><b>Sinh viên</b></NavLink>
                             </li>
+
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/vinh-danh"><b>Vinh danh</b></NavLink>
+                            </li>
                         </ul>
                         <form className="d-flex my-2 my-lg-0">
                             <input

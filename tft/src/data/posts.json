@@ -1,82 +1,302 @@
 [
-    {
+  {
       "id": 1,
-      "title": "The Importance of Education in Society",
-      "content": "<p>Educational institutions play a crucial role in shaping the future of society. Schools provide a platform for students to acquire knowledge, develop skills, and foster critical thinking. Furthermore, education promotes social cohesion and equality by providing equal opportunities for all individuals, regardless of their background or socio-economic status. Investing in education is investing in the future of our society.</p>",
-      "likes": 120,
-      "views": 500,
-      "author": 1
-    },
-    {
+      "title": "Top 10 Study Tips for College Students",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "author": 1,
+      "likes": 20,
+      "views": 100,
+      "created_at": "2024-04-29 12:00:00",
+      "updated_at": "2024-04-29 12:00:00"
+  },
+  {
       "id": 2,
-      "title": "The Role of Technology in Education",
-      "content": "<p>Technology has revolutionized the way education is delivered and accessed. With the advent of online learning platforms, students can now access educational resources from anywhere in the world. Additionally, technology enhances the learning experience by providing interactive and engaging content, making learning more accessible and enjoyable. However, it's important to ensure equitable access to technology to bridge the digital divide and ensure that all students have equal opportunities to learn.</p>",
-      "likes": 90,
-      "views": 400,
-      "author": 2
-    },
-    {
+      "title": "The Importance of STEM Education",
+      "content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "author": 2,
+      "likes": 15,
+      "views": 80,
+      "created_at": "2024-04-28 10:00:00",
+      "updated_at": "2024-04-28 10:00:00"
+  },
+  {
       "id": 3,
-      "title": "Creating Inclusive Learning Environments",
-      "content": "<p>Inclusive education is essential for ensuring that all students, regardless of their abilities or backgrounds, have access to quality education. Creating inclusive learning environments involves embracing diversity, accommodating individual learning needs, and fostering a culture of respect and acceptance. By prioritizing inclusion in education, we can create a more equitable society where every individual has the opportunity to thrive.</p>",
-      "likes": 150,
-      "views": 600,
-      "author": 3
-    },
-    {
+      "title": "How to Manage Your Time Effectively in High School",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "author": 3,
+      "likes": 25,
+      "views": 120,
+      "created_at": "2024-04-27 08:00:00",
+      "updated_at": "2024-04-27 08:00:00"
+  },
+  {
       "id": 4,
-      "title": "The Benefits of Extracurricular Activities",
-      "content": "<p>Extracurricular activities play a vital role in the holistic development of students. Participation in activities such as sports, arts, and clubs helps students develop essential life skills such as teamwork, leadership, and time management. Furthermore, extracurricular activities provide students with opportunities to explore their interests and passions outside of the classroom, fostering personal growth and self-discovery. By encouraging participation in extracurricular activities, schools can support the overall well-being and success of their students.</p>",
-      "likes": 80,
-      "views": 300,
-      "author": 4
-    },
-    {
+      "title": "The Benefits of Extracurricular Activities for Students",
+      "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      "author": 4,
+      "likes": 18,
+      "views": 90,
+      "created_at": "2024-04-26 15:00:00",
+      "updated_at": "2024-04-26 15:00:00"
+  },
+  {
       "id": 5,
-      "title": "The Role of Teachers in Fostering Student Success",
-      "content": "<p>Teachers play a pivotal role in shaping the academic and personal development of their students. Beyond imparting knowledge, teachers serve as mentors, motivators, and role models. Effective teaching involves not only delivering content but also cultivating a positive learning environment, providing personalized support, and fostering a love for learning. By investing in teacher professional development and support, we can empower educators to make a meaningful difference in the lives of their students.</p>",
-      "likes": 200,
-      "views": 700,
-      "author": 5
-    },
-    {
+      "title": "Choosing the Right College Major: Tips for Students",
+      "content": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+      "author": 5,
+      "likes": 22,
+      "views": 110,
+      "created_at": "2024-04-25 14:00:00",
+      "updated_at": "2024-04-25 14:00:00"
+  },
+  {
       "id": 6,
-      "title": "The Importance of Early Childhood Education",
-      "content": "<p>Early childhood education lays the foundation for lifelong learning and success. Research has shown that high-quality early childhood education programs can have a significant impact on a child's cognitive, social, and emotional development. By providing children with access to stimulating learning environments and supportive relationships, we can help them reach their full potential and thrive in school and beyond. Investing in early childhood education is investing in the future of our society.</p>",
-      "likes": 110,
-      "views": 450,
-      "author": 6
-    },
-    {
+      "title": "The Role of Technology in Education",
+      "content": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      "author": 6,
+      "likes": 17,
+      "views": 85,
+      "created_at": "2024-04-24 11:00:00",
+      "updated_at": "2024-04-24 11:00:00"
+  },
+  {
       "id": 7,
-      "title": "Promoting STEM Education for Future Innovation",
-      "content": "<p>STEM (Science, Technology, Engineering, and Mathematics) education is essential for preparing students for the challenges and opportunities of the 21st century. By fostering a strong foundation in STEM subjects, we can equip students with the critical thinking, problem-solving, and technical skills they need to succeed in an increasingly technology-driven world. Furthermore, promoting diversity and inclusion in STEM fields is essential for driving innovation and addressing global challenges.</p>",
-      "likes": 180,
-      "views": 600,
-      "author": 7
-    },
-    {
+      "title": "Tips for Writing Effective College Admission Essays",
+      "content": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
+      "author": 7,
+      "likes": 19,
+      "views": 95,
+      "created_at": "2024-04-23 09:00:00",
+      "updated_at": "2024-04-23 09:00:00"
+  },
+  {
       "id": 8,
-      "title": "The Power of Mentorship in Education",
-      "content": "<p>Mentorship plays a crucial role in supporting student success and personal growth. By connecting students with mentors who can provide guidance, advice, and support, we can help them navigate challenges, set goals, and realize their full potential. Additionally, mentorship fosters a sense of community and belonging, empowering students to overcome obstacles and pursue their aspirations with confidence. By investing in mentorship programs, schools can enhance the overall learning experience and promote student well-being.</p>",
-      "likes": 130,
-      "views": 550,
-      "author": 8
-    },
-    {
+      "title": "The Importance of Early Childhood Education",
+      "content": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "author": 8,
+      "likes": 21,
+      "views": 105,
+      "created_at": "2024-04-22 07:00:00",
+      "updated_at": "2024-04-22 07:00:00"
+  },
+  {
       "id": 9,
-      "title": "The Importance of Social Emotional Learning",
-      "content": "<p>Social emotional learning (SEL) is essential for promoting students' emotional well-being, interpersonal skills, and academic success. SEL teaches students how to manage their emotions, build healthy relationships, and make responsible decisions, which are critical skills for navigating life's challenges and opportunities. By integrating SEL into the curriculum and creating supportive learning environments, schools can empower students to thrive academically, socially, and emotionally.</p>",
-      "likes": 160,
-      "views": 600,
-      "author": 9
-    },
-    {
+      "title": "Effective Study Habits Every Student Should Know",
+      "content": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "author": 9,
+      "likes": 16,
+      "views": 80,
+      "created_at": "2024-04-21 13:00:00",
+      "updated_at": "2024-04-21 13:00:00"
+  },
+  {
       "id": 10,
-      "title": "Empowering Student Voice in Education",
-      "content": "<p>Empowering student voice is essential for creating inclusive and student-centered learning environments. When students feel heard, valued, and respected, they are more engaged in their learning and take ownership of their education. By providing opportunities for students to express their opinions, share their experiences, and participate in decision-making processes, schools can foster a sense of agency and empowerment among students. Empowering student voice not only enhances the learning experience but also promotes democracy and social justice.</p>",
-      "likes": 140,
-      "views": 500,
-      "author": 10
-    }
-  ]
+      "title": "The Future of Online Learning",
+      "content": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+      "author": 10,
+      "likes": 23,
+      "views": 115,
+      "created_at": "2024-04-20 16:00:00",
+      "updated_at": "2024-04-20 16:00:00"
+  },
+  {
+      "id": 11,
+      "title": "How to Prepare for College Entrance Exams",
+      "content": "Et harum quidem rerum facilis est et expedita distinctio.",
+      "author": 11,
+      "likes": 18,
+      "views": 90,
+      "created_at": "2024-04-19 18:00:00",
+      "updated_at": "2024-04-19 18:00:00"
+  },
+  {
+      "id": 12,
+      "title": "Innovative Teaching Methods for the 21st Century Classroom",
+      "content": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.",
+      "author": 12,
+      "likes": 20,
+      "views": 100,
+      "created_at": "2024-04-18 20:00:00",
+      "updated_at": "2024-04-18 20:00:00"
+  },
+  {
+      "id": 13,
+      "title": "Student Mental Health: Importance and Strategies for Support",
+      "content": "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.",
+      "author": 13,
+      "likes": 24,
+      "views": 120,
+      "created_at": "2024-04-17 22:00:00",
+      "updated_at": "2024-04-17 22:00:00"
+  },
+  {
+      "id": 14,
+      "title": "Navigating Financial Aid Options for College Students",
+      "content": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      "author": 14,
+      "likes": 18,
+      "views": 90,
+      "created_at": "2024-04-16 12:00:00",
+      "updated_at": "2024-04-16 12:00:00"
+  },
+  {
+      "id": 15,
+      "title": "The Impact of Technology on Classroom Learning",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "author": 15,
+      "likes": 22,
+      "views": 110,
+      "created_at": "2024-04-15 10:00:00",
+      "updated_at": "2024-04-15 10:00:00"
+  },
+  {
+      "id": 16,
+      "title": "Creating a Positive Learning Environment for Students",
+      "content": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "author": 16,
+      "likes": 19,
+      "views": 95,
+      "created_at": "2024-04-14 08:00:00",
+      "updated_at": "2024-04-14 08:00:00"
+  },
+  {
+      "id": 17,
+      "title": "Overcoming Challenges in Online Education",
+      "content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "author": 17,
+      "likes": 21,
+      "views": 105,
+      "created_at": "2024-04-13 06:00:00",
+      "updated_at": "2024-04-13 06:00:00"
+  },
+  {
+      "id": 18,
+      "title": "The Role of Parents in Student Success",
+      "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "author": 18,
+      "likes": 16,
+      "views": 80,
+      "created_at": "2024-04-12 04:00:00",
+      "updated_at": "2024-04-12 04:00:00"
+  },
+  {
+      "id": 19,
+      "title": "Effective Communication Strategies for Teachers",
+      "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      "author": 19,
+      "likes": 23,
+      "views": 115,
+      "created_at": "2024-04-11 02:00:00",
+      "updated_at": "2024-04-11 02:00:00"
+  },
+  {
+      "id": 20,
+      "title": "The Benefits of Internships for College Students",
+      "content": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+      "author": 20,
+      "likes": 18,
+      "views": 90,
+      "created_at": "2024-04-10 12:00:00",
+      "updated_at": "2024-04-10 12:00:00"
+  },
+  {
+      "id": 21,
+      "title": "The Role of Education in Social Mobility",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "author": 21,
+      "likes": 20,
+      "views": 100,
+      "created_at": "2024-04-09 10:00:00",
+      "updated_at": "2024-04-09 10:00:00"
+  },
+  {
+      "id": 22,
+      "title": "Supporting Special Needs Students in the Classroom",
+      "content": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
+      "author": 22,
+      "likes": 19,
+      "views": 95,
+      "created_at": "2024-04-08 08:00:00",
+      "updated_at": "2024-04-08 08:00:00"
+  },
+  {
+      "id": 23,
+      "title": "The Role of Education in Economic Development",
+      "content": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "author": 23,
+      "likes": 21,
+      "views": 105,
+      "created_at": "2024-04-07 06:00:00",
+      "updated_at": "2024-04-07 06:00:00"
+  },
+  {
+      "id": 24,
+      "title": "The Impact of Standardized Testing on Education",
+      "content": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "author": 24,
+      "likes": 22,
+      "views": 110,
+      "created_at": "2024-04-06 04:00:00",
+      "updated_at": "2024-04-06 04:00:00"
+  },
+  {
+      "id": 25,
+      "title": "The Importance of Arts Education in Schools",
+      "content": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+      "author": 25,
+      "likes": 19,
+      "views": 95,
+      "created_at": "2024-04-05 02:00:00",
+      "updated_at": "2024-04-05 02:00:00"
+  },
+  {
+      "id": 26,
+      "title": "Addressing Bullying in Schools: Strategies for Prevention",
+      "content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "author": 26,
+      "likes": 20,
+      "views": 100,
+      "created_at": "2024-04-04 12:00:00",
+      "updated_at": "2024-04-04 12:00:00"
+  },
+  {
+      "id": 27,
+      "title": "The Role of Parents in Early Childhood Education",
+      "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "author": 27,
+      "likes": 17,
+      "views": 85,
+      "created_at": "2024-04-03 10:00:00",
+      "updated_at": "2024-04-03 10:00:00"
+  },
+  {
+      "id": 28,
+      "title": "The Impact of Poverty on Education",
+      "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      "author": 28,
+      "likes": 15,
+      "views": 75,
+      "created_at": "2024-04-02 08:00:00",
+      "updated_at": "2024-04-02 08:00:00"
+  },
+  {
+      "id": 29,
+      "title": "The Benefits of Multicultural Education",
+      "content": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+      "author": 29,
+      "likes": 18,
+      "views": 90,
+      "created_at": "2024-04-01 06:00:00",
+      "updated_at": "2024-04-01 06:00:00"
+  },
+  {
+      "id": 30,
+      "title": "The Role of Education in Shaping Societal Values",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "author": 30,
+      "likes": 16,
+      "views": 80,
+      "created_at": "2024-03-31 04:00:00",
+      "updated_at": "2024-03-31 04:00:00"
+  }
+]
