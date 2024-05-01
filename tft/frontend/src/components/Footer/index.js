@@ -2,7 +2,7 @@
 
 export default function Footer() {
     return (
-        <footer className="bg-dark text-white p-5">
+        <footer className=" text-white p-5">
             <div className="container">
                 <div className="row">
                     <div className="col-12 offset-1 mb-2">

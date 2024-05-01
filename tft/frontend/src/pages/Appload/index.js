@@ -1,6 +1,7 @@
-import ApploadUser from "../../components/AploadUser";
 import ApploadList from "../../components/ApploadList";
-import DefaultLayout from "../../layouts/DefaultLayout";
+import Footer from "../../components/Footer";
+import "./styles.css";
+import { Link } from "react-router-dom";
 
 export default function ApploadPage({}) {
   const students1 = [
@@ -82,45 +83,100 @@ export default function ApploadPage({}) {
   ];
 
   const students2 = students1.slice(0, 4);
-  const students3 = students1.slice(0, 3);
-  const students4 = students1.slice(0, 2);
-  const students5 = students1.slice(0, 1);
+  const students3 = students1.slice(0, 1);
+  const students4 = students1.slice(0, 3);
+  const students5 = students1.slice(0, 4);
+
+  const students = [students1, students2, students3, students4, students5];
 
   return (
-    <DefaultLayout
-      slot={
-        <div className="appload-content">
-          <h1 className="title p-4">
-            Vinh danh sinh viên xuất sắc nhất các khoá
-          </h1>
-          <hr />
+    <div className="appload-content">
+      <ul className="nav justify-content-center fixed-top">
+        <li className="nav-item">
+          <Link className="nav-logo" to="/intro" aria-current="page">
+            <img className="img-fluid" src="./src/intros/logo.png" alt="" />
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/#home" aria-current="page">
+            Trang chủ
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/#about">
+            Giới thiệu
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/#enroll">
+            Tuyển sinh
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/#student">
+            Dành cho sinh viên
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link active" to="/#appload">
+            Vinh danh
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/#contact">
+            Liên hệ
+          </Link>
+        </li>
+      </ul>
 
-          <div className="appload-class">
-            <h2>Sinh viên khoá 1</h2>
-            <ApploadList users={students1} />
-          </div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        {students &&
+          students.map((studentsElement, index) => (
+            <a
+              href={"#course-" + (index + 1)}
+              class="nav-item"
+              role="presentation"
+            >
+              <span
+                class={"nav-link " + (index === 0 ? "active" : "")}
+                id={"course-tab-" + (index + 1)}
+                data-bs-toggle="tab"
+                data-bs-target={"#course-" + (index + 1)}
+                type="button"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+              >
+                Khoá {index + 1}
+              </span>
+            </a>
+          ))}
+      </ul>
 
-          <div className="appload-class">
-            <h2>Sinh viên khoá 2</h2>
-            <ApploadList users={students2} />
-          </div>
+      <div class="tab-content">
+        {students &&
+          students.map((studentsElement, index) => (
+            <div
+              class={"tab-pane " + (index === 0 ? " active " : "")}
+              role="tabpanel"
+            >
+              Khoá {index + 1}
+            </div>
+          ))}
+      </div>
 
-          <div className="appload-class">
-            <h2>Sinh viên khoá 3</h2>
-            <ApploadList users={students3} />
-          </div>
-
-          <div className="appload-class">
-            <h2>Sinh viên khoá 4</h2>
-            <ApploadList users={students4} />
-          </div>
-
-          <div className="appload-class">
-            <h2>Sinh viên khoá 5</h2>
-            <ApploadList users={students5} notLast={false} />
-          </div>
-        </div>
-      }
-    ></DefaultLayout>
+      <div className="container">
+        {students &&
+          students.map((studentsElement, index) => (
+            <div key={index} className="appload-class" id={"course-" + (index + 1)}>
+              <h2>Sinh viên khoá {index + 1}</h2>
+              <ApploadList users={studentsElement} />
+            </div>
+          ))}
+      </div>
+      <div className="bg-dark">
+        <Footer />
+      </div>
+    </div>
   );
 }
