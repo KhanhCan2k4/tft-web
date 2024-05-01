@@ -21,6 +21,7 @@ import FadeTransition from "./components/FadeTransition";
 import EditPost from "./pages/AdminEditPost";
 import AdminEnroll from "./pages/AdminEnroll";
 import AdminStudentPost from './pages/AdminStudentPosts/index';
+import DemoHome from "./pages/DemoHome";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
       <Routes>
         <Route loader path="/" element={<FadeTransition><HomePage /></FadeTransition> } />
         <Route path="/intro" element={<Intro />} />
+
+        <Route path="/home" element={<DemoHome />} />
+
         <Route path="/gioi-thieu" element={<AboutPage />} />
         <Route path="/tuyen-sinh" element={<EnrolmentPage />} />
         <Route path="/tot-nghiep" element={<GraduationPage />} />
