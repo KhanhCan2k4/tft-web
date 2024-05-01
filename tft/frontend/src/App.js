@@ -27,10 +27,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route loader path="/" element={<FadeTransition><HomePage /></FadeTransition> } />
+        <Route path="/home" element={<FadeTransition><HomePage /></FadeTransition> } />
         <Route path="/intro" element={<Intro />} />
 
-        <Route path="/home" element={<DemoHome />} />
+        <Route path="/" element={<DemoHome />} />
 
         <Route path="/gioi-thieu" element={<AboutPage />} />
         <Route path="/tuyen-sinh" element={<EnrolmentPage />} />

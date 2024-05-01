@@ -1,24 +1,31 @@
 import { useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
+import "./styles.css";
 
 export default function ApploadUser({ user, rank }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <>
-      <div
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
-        className="appload-user"
-      >
-        <Tooltip title={"Top " + rank}>
-          <div className={"rank rank-" + rank}></div>
-          <img className="avatar" src="./src/users/user-1.png" alt="avatar" />
-        </Tooltip>
-        {open && <Modal />}
-      </div>
-    </>
+    <div className="appload-user">
+      { user && (
+        <div
+          onMouseEnter={handleOpen}
+          onMouseLeave={handleClose}
+          className="appload-user"
+        >
+          <Tooltip title={"Top " + rank}>
+            <div className={"rank rank-" + rank}></div>
+            <img className="avatar" src="./src/users/user-1.png" alt="avatar" />
+          </Tooltip>
+          {open && <Modal />}
+        </div>
+      ) || (
+        <div className="appload-user">
+          <div className={"empty rank rank-" + rank}></div>
+        </div>
+      )}
+    </div>
   );
 }
 

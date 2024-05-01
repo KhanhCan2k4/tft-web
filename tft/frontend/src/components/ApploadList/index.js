@@ -1,38 +1,29 @@
 import ApploadUser from "../AploadUser";
 
-export default function ApploadList({ users, notLast }) {
+export default function ApploadList({ users }) {
   return (
     <div className="appload-list-container">
       <div className="row">
-        {(users[4] && (
-          <div className="col">
-            <ApploadUser user={users[4]} rank={5} />
-          </div>
-        )) || <div className="col"></div>}
+        <div className="col">
+          {users[4] && <ApploadUser user={users[4]} rank={5} /> || <ApploadUser rank={5} />}
+        </div>
 
-        {(users[2] && (
-          <div className="col">
-            <ApploadUser user={users[2]} rank={3} />
-          </div>
-        )) || <div className="col"></div>}
+        <div className="col">
+          {users[2] && <ApploadUser user={users[2]} rank={3} /> || <ApploadUser rank={3} />}
+        </div>
 
-        {(users[0] && (
-          <div className="col">
-            <ApploadUser user={users[0]} rank={1} />
-          </div>
-        )) || <div className="col"></div>}
+        <div className="col">
+          {users[0] && <ApploadUser user={users[0]} rank={1} /> || <ApploadUser rank={1} />}
+        </div>
 
-        {(users[1] && (
-          <div className="col">
-            <ApploadUser user={users[1]} rank={2} />
-          </div>
-        )) || <div className="col"></div>}
+        <div className="col">
+          {users[1] && <ApploadUser user={users[1]} rank={2} /> || <ApploadUser rank={2} />}
+        </div>
 
-        {(users[3] && (
-          <div className="col">
-            <ApploadUser user={users[3]} rank={4} />
-          </div>
-        )) || <div className="col"></div>}
+        <div className="col">
+          {users[3] && <ApploadUser user={users[3]} rank={4} /> || <ApploadUser rank={4} />}
+        </div>
+
       </div>
     </div>
   );
