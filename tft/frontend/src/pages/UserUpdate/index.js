@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { json, useLocation } from "react-router-dom"
+import { json, useLocation, useNavigate } from "react-router-dom"
 
 const initUser = {
   id: 0,
@@ -9,7 +9,10 @@ const initUser = {
 export default function UserUpdate() {
 
   const location = useLocation();
+  const history = useNavigate();
   const inputName = useRef();
+  const inputEmail = useRef();
+
 
   const [user, setUser] = useState(initUser);
 
@@ -18,28 +21,29 @@ export default function UserUpdate() {
     location.pathname = "http://localhost:8000";
   }, [])
 
-  function upDateUser() {
-    const fakeUser = { ...user };
 
-    fakeUser.name = inputName.current.value;
-    // fakeUser.email = in
-
-    setUser(fakeUser);
-
-  }
+  const handleNameChange = (e) => {
+    setUser({ ...user, name: e.target.value });
+  };
+  
+  const handleEmailChange = (e) => {
+    setUser({ ...user, email: e.target.value });
+  };
 
   function submitUpdate() {
-    const url =`http://localhost:8000/api/users/${user.id}`;
+    const url = `http://localhost:8000/api/users/${user.id}`;
     console.log(url);
     fetch(url, {
       method: "PATCH",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     })
-    .then(res=> res.json())
+      .then(res => res.json())
       .then(data => {
         console.log(data);
         console.log("Update successfully");
+        console.log(user)
+        history("/quan-tri/thanh-vien");
       })
       .catch((err) => {
         console.log(err);
@@ -58,12 +62,27 @@ export default function UserUpdate() {
       </div>
       <div className="form-group pb-3">
         <label for="nameUser">Tên sinh viên</label>
-        <input ref={inputName} onInput={() => upDateUser()} type="text" className="form-control" id="nameUser" name="nameUser" value={user['name']} />
+        <input
+          ref={inputName}
+          type="text"
+          className="form-control"
+          id="nameUser"
+          name="nameUser"
+          onChange={handleNameChange}
+          value={user.name}
+        />
       </div>
       <div className="form-group pb-3">
-        <label for="exampleInputEmail1">Địa chỉ email</label>
-        <input type="email" className="form-control" id="exampleInputEmail1" name="email" value={user['email']} />
-      </div>
+        <label for="email">Địa chỉ email</label>
+        <input
+          ref={inputEmail}
+          type="text"
+          className="form-control"
+          id="email"
+          name="email"
+          onChange={handleEmailChange}
+          value={user.email}
+        />      </div>
       <div className="form-group pb-3">
         <label for="position">Chức vụ</label><br />
         <select className="form-select" name="position" id="position">

@@ -28,7 +28,7 @@ export default function Footer() {
                             <hr />
                         </ul>
                         <ul className="bottom-link">
-                            <li className=""><a href="lien-he">Liên hệ</a></li>
+                            <li className=""><a href="/lien-he">Liên hệ</a></li>
                             <hr />
                             <li className="">2024 <a href="http://fit.tdc.edu.vn/">Khoa Công nghệ thông tin | Cao đẳng Công nghệ Thủ Đức | FIT - TDC</a> All Rights Reserved.</li>
                             <hr />

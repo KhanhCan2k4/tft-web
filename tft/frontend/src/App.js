@@ -14,6 +14,9 @@ import ApploadPage from "./pages/Appload";
 import TagPage from "./pages/Tag";
 import UserUpdate from "./pages/UserUpdate";
 import UserCreate from "./pages/UserCreate";
+import Contact from "./pages/Contact";
+import AdminContact from './pages/AdminContact';
+
 
 function App() {
   return (
@@ -26,12 +29,14 @@ function App() {
         <Route path="/bai-viet" element={<PostPage />} />
         <Route path="/danh-muc" element={<GraduationPage />} />
         <Route path="/vinh-danh" element={<ApploadPage />} />
+        <Route path="/lien-he" element={<Contact />} />
 
         <Route path="/quan-tri" element={<AdminHomePage />} />
         <Route path="/quan-tri/gioi-thieu" element={<AdminPostPage />} />
         <Route path="/quan-tri/bai-viet" element={<AdminPosts/>} />
         <Route path="/quan-tri/danh-muc" element={<AdminCategories/>} />
         <Route path="/quan-tri/thanh-vien" element={<AdminMembers/>} />
+        <Route path="/quan-tri/lien-he" element={<AdminContact />} />
 
         <Route path="/quan-tri/thanh-vien/them-thong-tin-thanh-vien" element={<UserCreate />} />
         <Route path="/quan-tri/thanh-vien/sua-thong-tin-thanh-vien" element={<UserUpdate/>} />

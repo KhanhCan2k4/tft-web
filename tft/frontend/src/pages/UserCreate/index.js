@@ -1,65 +1,94 @@
-import { useState } from "react";
-import { apiURL } from "../../App";
-import { json } from "react-router";
+import React, { useState, useRef, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function UserCreate() {
+const UserCreate = () => {
+  const location = useLocation();
+  const history = useNavigate();
+  const [user, setUser] = useState({
+    id: 0,
+    name: '',
+    email: ''
+  });
 
-    // const hiddenCourses = document.getElementById('#courses')
-    // if (condition) {
-    //     hiddenCourses.style.visibility = "hidden";
-    // }
-    // else{
-    //     hiddenCourses.style.visibility = "visible";
-    // }
+  const inputName = useRef();
+  const inputEmail = useRef();
+  const [successMessage, setSuccessMessage] = useState('');
 
-    function processingEditUser() {
-        console.log("clicked");
-        fetch("http://localhost:8000/api/users", {
-            method: "PATCH",
-            body: JSON.stringify({
-                name: "abcname",
-                email: "abc"
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(
-                console.log("s")
-            )
-            .catch(
-                console.log("e")
-            );
+  useEffect(() => {
+    setUser(location.state || { id: 0, name: '', email: '' });
+  }, [location.state]);
 
-    }
+  const handleNameChange = (e) => {
+    setUser({ ...user, name: e.target.value });
+  };
 
-    return <>
-        <div className="container">
-            <h1 className="py-5">Create User</h1>
-            <form>
-                <div className="form-group pb-3">
-                    <label for="nameUser">Tên sinh viên</label>
-                    <input type="text" className="form-control" id="nameUser" name="nameUser" value="" />
-                </div>
-                <div className="form-group pb-3">
-                    <label for="exampleInputEmail1">Địa chỉ email</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" name="email" />
-                </div>
-                <div className="form-group pb-3">
-                    <label for="position">Chức vụ</label><br />
-                    <select className="form-select" name="position" id="position">
-                        <option value="1">Sinh viên</option>
-                        <option value="2">Trợ giảng</option>
-                        <option value="3">Giảng viên</option>
-                        <option value="4">Cố vấn học tập</option>
-                    </select>
-                </div>
-                <div id="courses" className="form-group pb-3 courses">
-                    <label for="courses">Khóa</label>
-                    <input type="number" className="form-control" id="courses" name="courses" min={1} max={5} step={1} value="" readOnly/>
-                </div>
-                <button type="submit" className="btn btn-primary">Comfirm</button>
-            </form>
+  const handleEmailChange = (e) => {
+    setUser({ ...user, email: e.target.value });
+  };
+
+  const processingAddUser = (e) => {
+    e.preventDefault();
+
+    const newUser = {
+      name: user.name,
+      email: user.email
+    };
+
+    fetch('http://localhost:8000/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log('User added successfully!');
+          console.log(newUser);
+          history('/quan-tri/thanh-vien');
+        } else {
+          console.log('Failed to add user.');
+          console.log(newUser);
+        }
+      })
+      .catch((error) => {
+        console.error('Error adding user:', error);
+      });
+  };
+  return (
+    <div className="container">
+      <h1 className="py-5">Create User</h1>
+      <form onSubmit={processingAddUser}>
+        <div className="form-group pb-3">
+          <label htmlFor="nameUser">Tên sinh viên</label>
+          <input
+            ref={inputName}
+            type="text"
+            className="form-control"
+            id="nameUser"
+            name="nameUser"
+            onChange={handleNameChange}
+            value={user.name}
+          />
         </div>
-    </>;
-}
+        <div className="form-group pb-3">
+          <label htmlFor="email">Địa chỉ email</label>
+          <input
+            ref={inputEmail}
+            type="email"
+            className="form-control"
+            id="email"
+            name="email"
+            onChange={handleEmailChange}
+            value={user.email}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Confirm
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default UserCreate;

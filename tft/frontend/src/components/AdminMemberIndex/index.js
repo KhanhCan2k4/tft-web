@@ -10,6 +10,36 @@ const initUser = {
 function AdminMemberIndex() {
 
     const [users, setUsers] = useState([initUser]);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const notify = document.querySelector(".alert");
+    useEffect(() => {
+        // Kiểm tra nếu có thông báo thành công thì hiển thị alert success và sau 3 giây ẩn đi
+        if (successMessage) {
+            const successAlert = document.querySelector('.alert-success');
+            successAlert.innerText = successMessage;
+            successAlert.style.display = 'block';
+    
+            setTimeout(() => {
+                successAlert.style.display = 'none';
+                setSuccessMessage('');
+            }, 3000);
+        }
+    
+        // Kiểm tra nếu có thông báo lỗi thì hiển thị alert danger và sau 3 giây ẩn đi
+        if (errorMessage) {
+            const errorAlert = document.querySelector('.alert-danger');
+            errorAlert.innerText = errorMessage;
+            errorAlert.style.display = 'block';
+    
+            setTimeout(() => {
+                errorAlert.style.display = 'none';
+                setErrorMessage('');
+            }, 5000);
+        }
+    }, [successMessage, errorMessage]);
+    
 
     useEffect(() => {
         getFromDatabase();
@@ -29,7 +59,7 @@ function AdminMemberIndex() {
 
     function deleteUser(id) {
 
-        if (!window.confirm("Banj cos muoons xoas thanhf vieen nayf khoong?")) {
+        if (!window.confirm("Bạn có muốn xóa thành viên này không")) {
             return;
         }
     
@@ -41,7 +71,11 @@ function AdminMemberIndex() {
         .then(res=> res.json())
           .then(data => {
             console.log(data);
-            console.log("Delete successfully");
+            if (data && data.message) {
+                setSuccessMessage(data.message); // Hiển thị thông báo thành công
+            } else {
+                setSuccessMessage("Delete successful");
+            }
             getFromDatabase();
 
           })
@@ -65,20 +99,18 @@ function AdminMemberIndex() {
                     <a className="btn btn-outline-teal my-3 mx-2" href="http://127.0.0.1:8000/admin/products/create">Xem danh sách</a>
                     <a className="btn btn-outline-teal my-3 ms-auto" href="http://127.0.0.1:8000/admin/products/create">Xem biều đồ</a>
                 </div>
-                <div className="alert alert-success" >
 
-                </div>
 
-                <div className="alert alert-danger">
+                <div className="alert alert-success" style={{ display: 'none' }}></div>
+                <div className="alert alert-danger" style={{ display: 'none' }}></div>
 
-                </div>
 
                 <table className="table table-striped">
                     <thead>
                         <tr>
                             <td>ID</td>
                             <td>Họ & Tên</td>
-                            <td>Ảnh đại dện</td>
+                            <td>Email</td>
                             <td>Chức vụ</td>
                             <td>Khóa</td>
                             <td>Ngày tham gia</td>
@@ -92,7 +124,7 @@ function AdminMemberIndex() {
                                 <tr key={index}>
                                     <td>{user['id']}</td>
                                     <td>{user['name']}</td>
-                                    <td>{user['avatar']}</td>
+                                    <td>{user['email']}</td>
                                     <td>{user['chuc_vu']}</td>
                                     <td>{user['khoa']}</td>
                                     <td>{user['created_at']}</td>

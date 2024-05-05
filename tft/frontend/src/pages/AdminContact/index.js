@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AdminMemberIndex from "../../components/AdminMemberIndex";
+import AdminContactIndex from "../../components/AdminContactIndex";
 import AdminLayout from "../../layouts/AdminLayout";
 
 
@@ -10,7 +10,7 @@ function AdminMembers() {
             (
                 <>
                     <div className="container">
-                        <AdminMemberIndex />
+                        <AdminContactIndex />
                     </div>
                 </>
             )
