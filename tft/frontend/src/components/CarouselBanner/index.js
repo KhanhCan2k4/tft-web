@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import "./styles.css";
 
 export default function CarouselBanner({ banners }) {
     const total = banners.length;
@@ -17,7 +18,7 @@ export default function CarouselBanner({ banners }) {
     }
 
     return (
-        <>
+        <div className="carousel-banner">
             <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     {btnLinks}
@@ -28,7 +29,9 @@ export default function CarouselBanner({ banners }) {
                         <div key={index} 
                             onClick={goIntro}
                             className={"carousel-item " + (index == 0 ? "active" : "")}>
-                            <img src={"http://localhost:8000/" + banner.img || "./src/banners/banner.jpg"} className="d-block w-100" alt={banner.title} />
+                            <img src={"http://localhost:8000/" + banner.img || "./src/banners/banner.jpg"} 
+                                className="d-block w-100" 
+                                alt={banner.title} />
                         </div>
                     ))}
 
@@ -42,7 +45,7 @@ export default function CarouselBanner({ banners }) {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-        </>
+        </div>
     )
 }
 

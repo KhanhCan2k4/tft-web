@@ -24,13 +24,17 @@ import AdminStudentPost from './pages/AdminStudentPosts/index';
 import Configuration from "./pages/Configuration";
 import FormEditConfiguration from "./components/FormEditConfiguration";
 import FormAddConfiguration from "./components/FormAddConguration";
+import DemoHome from "./pages/DemoHome";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route loader path="/" element={<FadeTransition><HomePage /></FadeTransition> } />
+        <Route path="/home" element={<FadeTransition><HomePage /></FadeTransition> } />
         <Route path="/intro" element={<Intro />} />
+
+        <Route path="/" element={<DemoHome />} />
+
         <Route path="/gioi-thieu" element={<AboutPage />} />
         <Route path="/tuyen-sinh" element={<EnrolmentPage />} />
         <Route path="/tot-nghiep" element={<GraduationPage />} />
