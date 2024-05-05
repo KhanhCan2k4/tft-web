@@ -5,7 +5,7 @@
 // app.use(express.json());
 
 // // Thiết lập API Key của SendGrid
-// sgMail.setApiKey("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");
+
 
 // // Endpoint để gửi email
 // app.post('/api/send-email', async (req, res) => {
