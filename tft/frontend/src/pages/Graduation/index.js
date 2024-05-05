@@ -1,11 +1,11 @@
-import DefaultLayout from "../../layouts/DefaultLayout";
+import DefaultLayoutStudent from "../../layouts/DefaultLayoutStudent";
 
 export default function GraduationPage() {
     return (
-        <DefaultLayout 
+        <DefaultLayoutStudent
             slot={
                <h1>Here is Graduation page</h1>
             }>
-        </DefaultLayout>
+        </DefaultLayoutStudent>
     );
 }
