@@ -21,6 +21,9 @@ import FadeTransition from "./components/FadeTransition";
 import EditPost from "./pages/AdminEditPost";
 import AdminEnroll from "./pages/AdminEnroll";
 import AdminStudentPost from './pages/AdminStudentPosts/index';
+import Configuration from "./pages/Configuration";
+import FormEditConfiguration from "./components/FormEditConfiguration";
+import FormAddConfiguration from "./components/FormAddConguration";
 
 function App() {
   return (
@@ -32,7 +35,6 @@ function App() {
         <Route path="/tuyen-sinh" element={<EnrolmentPage />} />
         <Route path="/tot-nghiep" element={<GraduationPage />} />
         <Route path="/bai-viet" element={<PostPage />} />
-        <Route path="/danh-muc" element={<GraduationPage />} />
         <Route path="/vinh-danh" element={<ApploadPage />} />
 
         <Route path="/quan-tri" element={<AdminHomePage />} />
@@ -57,6 +59,11 @@ function App() {
         <Route path="/quan-tri/thanh-vien" element={<AdminMembers/>} />
         <Route path="/quan-tri/thanh-vien/them-thong-tin-thanh-vien" element={<UserCreate />} />
         <Route path="/quan-tri/thanh-vien/sua-thong-tin-thanh-vien" element={<UserUpdate/>} />
+
+        <Route path="/quan-tri/cai-dat" element={<Configuration/>} />
+        <Route path="/quan-tri/cai-dat/chinh-sua" element={<FormEditConfiguration/>} />
+        <Route path="/quan-tri/cai-dat/them" element={<FormAddConfiguration/>} />
+
       </Routes>
     </BrowserRouter >
   );

@@ -1,5 +1,5 @@
 
-function AdminCategoryIndex({categories}) {
+function AdminCategoryIndex({ categories }) {
     return (
         <>
             <h1>Quản lý danh mục</h1>
@@ -45,7 +45,8 @@ function AdminCategoryIndex({categories}) {
                                         <a href="#" className="btn btn-outline-danger"><i className="bi bi-x-circle"></i></a>
                                     </td>
                                 </tr>
-                            ))}
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
