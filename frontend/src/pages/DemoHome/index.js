@@ -9,6 +9,7 @@ import PostCard from "./../../components/PostCard/index";
 import SlideListPost from "../../components/SlideListPost";
 import { Parser } from "html-to-react";
 import SildePosts, { SildePosts2 } from "../../components/SlidePosts";
+import ContactForm from "../../components/ContactForm";
 
 const initBanner = {
   img: "banner.jpg",
@@ -358,22 +359,9 @@ export default function DemoHome() {
           </div>
         </div>
       </div>
-      <div className="footer-container stack-container">
-        <div className="mb-3 container" id="lien-he">
-          <label htmlFor="" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            name=""
-            id=""
-            aria-describedby="emailHelpId"
-            placeholder="abc@mail.com"
-          />
-          <small id="emailHelpId" className="form-text text-muted">
-            Help text
-          </small>
+      <div className="footer-container stack-container py-5">
+        <div className="mb-3 container py-5" id="lien-he">
+          <ContactForm />
         </div>
         <Footer />
       </div>

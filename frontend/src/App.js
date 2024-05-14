@@ -75,3 +75,4 @@ export default App;
 
 export const apiURL = 'http://localhost:8000/api/';
 export const imageURL = 'http://localhost:8000/storage/images/';
+export const public_email_key = "nbxhmGhQt4JpgZSUa";

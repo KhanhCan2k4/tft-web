@@ -8,7 +8,7 @@ export default function DefaultLayout({ slot }) {
       <NavBar />
       <div className="content row">
         <div className="main-content">
-          <div className="container bg-white">{slot}</div>
+          <div className="container">{slot}</div>
         </div>
       </div>
       <div className="bg-dark">

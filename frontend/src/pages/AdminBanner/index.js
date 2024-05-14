@@ -93,7 +93,7 @@ export default function AdminBanner() {
   }, [banners]);
 
   function handleInputImage(e) {
-    const file = e.target.files[0];
+    const file = e.target?.files[0];
 
     const formData = new FormData();
     formData.append("img", file);
@@ -118,7 +118,7 @@ export default function AdminBanner() {
   }
 
   function handleChangeImage(e) {
-    const file = e.target.files[0];
+    const file = e.target?.files[0];
     reviewedImage.current.src = URL.createObjectURL(file);
 
     setNewBannerInput(file);
