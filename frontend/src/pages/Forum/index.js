@@ -24,6 +24,7 @@ export default function ForumPage() {
   const modal = useRef();
   const addPostModal = useRef();
   const inputRef = useRef();
+  const sendCommentRef = useRef();
 
   const [show, setShow] = useState(false);
   const [isAdding, setAdding] = useState(false);
@@ -199,6 +200,7 @@ export default function ForumPage() {
   function handleAddComment() {
     console.log(addedComment);
     inputRef.current.value = "";
+    sendCommentRef.current.innerHTML = "Đang tải...";
 
     //save comment into database
     const url = apiURL + `posts/${activePost.id}`;
@@ -225,6 +227,13 @@ export default function ForumPage() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        sendCommentRef.current.innerHTML = '';
+        const icon = document.createElement("i");
+        icon.className = "bi bi-send-fill";
+
+        sendCommentRef.current.append(icon);
       });
 
     //remove all data
@@ -390,18 +399,20 @@ export default function ForumPage() {
             <Modal.Body>
               <Modal.Title>{activePost && activePost.title}</Modal.Title>
               <hr />
-              {activePost &&
-                activePost.comments &&
-                Array.from(activePost.comments)
-                  .reverse()
-                  .map((comment) => (
-                    <div className="d-flex mb-3">
-                      <Avatar alt="Dowpad" src="Dowpad" />
-                      <div className="ps-2 py-2">
-                        {comment && comment.content}
+              <div style={{ maxHeight: "400px", overflowY: "scroll" }}>
+                {activePost &&
+                  activePost.comments &&
+                  Array.from(activePost.comments)
+                    .reverse()
+                    .map((comment) => (
+                      <div className="d-flex mb-3">
+                        <Avatar alt="Dowpad" src="Dowpad" />
+                        <div className="ps-2 py-2">
+                          {comment && comment.content}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+              </div>
             </Modal.Body>
             <Modal.Footer>
               <div className="row" style={{ width: "100%" }}>
@@ -417,13 +428,20 @@ export default function ForumPage() {
                     </InputGroup.Text>
                     <Form.Control
                       ref={inputRef}
-                      onChange={(e) => setAddedComment(e.target.value)}
+                      onChange={(e) => {
+                        setAddedComment(e.target.value)}}
                       placeholder="Bình luận..."
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.keyCode === 13) {
+                          handleAddComment();
+                        }
+                      }}
                     />
                   </InputGroup>
                 </div>
 
                 <button
+                  ref={sendCommentRef}
                   onClick={handleAddComment}
                   className="ms-2 col-1 btn-send btn btn-danger"
                 >
